@@ -17,7 +17,8 @@ namespace Product.Controllers
         {
             if (id != null && id != -1 && searchStr == null)
             {
-                ViewBag.categoriesFilter = new SelectList(db.Categories, "CategoryId", "Name");
+                SelectList tmp = new SelectList(db.Categories, "CategoryId", "Name",id);
+                ViewBag.categoriesFilter = tmp;
                 return View(db.Products.Where(x => x.CategoryId == id).OrderBy(x => x.ProducttId));
             }else if (searchStr != null)
             {
