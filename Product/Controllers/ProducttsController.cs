@@ -13,12 +13,16 @@ namespace Product.Controllers
         {
             db = _db;
         }
-        public IActionResult Index(int? id)
+        public IActionResult Index(int? id, string? searchStr)
         {
-            if (id != null && id != -1)
+            if (id != null && id != -1 && searchStr == null)
             {
                 ViewBag.categoriesFilter = new SelectList(db.Categories, "CategoryId", "Name");
                 return View(db.Products.Where(x => x.CategoryId == id).OrderBy(x => x.ProducttId));
+            }else if (searchStr != null)
+            {
+                ViewBag.categoriesFilter = new SelectList(db.Categories, "CategoryId", "Name");
+                return View(db.Products.Where(x => x.Name.Contains(searchStr)).OrderBy(x => x.ProducttId));
             }
             ViewBag.categoriesFilter = new SelectList(db.Categories, "CategoryId", "Name");
             return View(db.Products.OrderBy(x=>x.ProducttId));
@@ -125,9 +129,9 @@ namespace Product.Controllers
         }
 
         [HttpPost]
-        //public IActionResult searchData(string str)
-        //{
-        //    return RedirectToAction
-        //}
+        public IActionResult searchData(string searchStr)
+        {
+            return RedirectToAction(nameof(Index), new { searchStr = searchStr });
+        }
     }
 }
