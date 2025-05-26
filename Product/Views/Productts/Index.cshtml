@@ -1,0 +1,68 @@
+﻿@model IEnumerable<Productt>
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Index</h1>
+
+@if (Model.Any())
+{
+    <a asp-action="Create" class="btn btn-primary">Create Product</a>
+
+    <div>
+        <form asp-action="categoriesFilterSelected" method="post">
+            <select asp-items="ViewBag.categoriesFilter" name="id"  class="form-control" onchange="this.form.submit()">
+                <option value="-1">-Select Category-</option>
+            </select>
+
+        </form>
+
+        <form asp-action="searchData" method="post">
+            <input name="searchStr" class="form-control"/>
+            <input type="submit" value="Search" class="btn btn-success" />
+        </form>
+        
+    </div>
+    <table class="table table-bordered">
+        <tr>
+            <td>
+                @Html.DisplayNameFor(x=>x.Name)
+            </td>
+            <td>
+                @Html.DisplayNameFor(x => x.Price)
+            </td>
+            <td>Operations</td>
+        </tr>
+
+        @foreach (var prod in Model)
+        {
+            <tr>
+                <td>@prod.Name</td>
+                <td>@prod.Price</td>
+                <td>
+                    <a asp-action="Details"
+                       asp-route-id="@prod.ProducttId"
+                       class="btn btn-secondary"> More Details </a>
+
+                    <a asp-action="Edit"
+                       asp-route-id="@prod.ProducttId"
+                       class="btn btn-warning"> Edit </a>
+
+                    <a asp-action="Delete"
+                       asp-route-id="@prod.ProducttId"
+                       class="btn btn-danger"> Delete </a>
+                </td>
+            </tr>
+        }
+
+    </table>
+
+}
+else
+{
+    <div class="alert alert-warning">
+        No Products in list,
+        <a asp-action="Create" class="btn btn-primary">Create Product</a>
+    </div>
+
+}

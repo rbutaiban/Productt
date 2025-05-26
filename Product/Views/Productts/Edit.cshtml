@@ -1,0 +1,39 @@
+﻿@model Productt
+@{
+    ViewData["Title"] = "Edit";
+}
+
+<h1>Edit</h1>
+
+<form asp-action="Edit" method="post">
+    @Html.HiddenFor(x => x.ProducttId)
+    <table class="table table-bordered">
+
+        <tr>
+            <td> <label asp-for="Name"></label> </td>
+            <td> <input asp-for="Name" class="form-control" /> </td>
+        </tr>
+        <tr>
+            <td> <label asp-for="Price"></label> </td>
+            <td> <input asp-for="Price" class="form-control" /> </td>
+        </tr>
+        <tr>
+            <td> <label asp-for="CategoryId"></label> </td>
+            <td>
+                <select asp-for="CategoryId" asp-items="ViewBag.allCategories" class="form-control">
+                    <option value="-1">-Select Category-</option>
+                </select>
+            </td>
+        </tr>
+        <tr>
+            <td> <label asp-for="IsActive"></label> </td>
+            <td> <input asp-for="IsActive" class="form-check-input" />Is Active </td>
+        </tr>
+        <tr>
+            <td colspan="2">
+                <input type="submit" value="Update" class="btn btn-success" />
+                <a asp-action="Index" class="btn btn-primary">Cancel</a>
+            </td>
+        </tr>
+    </table>
+</form>
