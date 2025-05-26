@@ -3,7 +3,13 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<a asp-action="Productts"
+   class="btn btn-primary">Products List</a>
+   <hr />
+
+<h1>Categories</h1>
+<hr />
+
 @if (Model.Any())
 {
     <a asp-action="Create" class="btn btn-primary">Create Category</a>

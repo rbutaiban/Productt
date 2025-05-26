@@ -3,11 +3,15 @@
     ViewData["Title"] = "Index";
 }
 
-<h1>Index</h1>
+<a asp-action="Categories"
+   class="btn btn-primary"> Categories List </a>
+   <hr />
+
+<h1>Products</h1>
+<hr />
 
 @if (Model.Any())
 {
-    <a asp-action="Create" class="btn btn-primary">Create Product</a>
 
     <div>
         <form asp-action="categoriesFilterSelected" method="post">
@@ -16,13 +20,15 @@
             </select>
 
         </form>
-
+        <hr />
         <form asp-action="searchData" method="post">
             <input name="searchStr" class="form-control"/>
             <input type="submit" value="Search" class="btn btn-success" />
         </form>
         
     </div>
+    <hr />
+    <a asp-action="Create" class="btn btn-primary">Create Product</a>
     <table class="table table-bordered">
         <tr>
             <td>

@@ -4,6 +4,7 @@ using Product.Models;
 
 namespace Product.Controllers
 {
+    
     public class CategoriesController : Controller
     {
         private AppDbContext db;
@@ -11,6 +12,8 @@ namespace Product.Controllers
         {
             db = _db;
         }
+        [Route("Productts/Categories")]
+        [Route("Categories")]
         public IActionResult Index()
         {
             return View(db.Categories.OrderBy(x => x.CategoryId));

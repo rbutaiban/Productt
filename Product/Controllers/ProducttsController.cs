@@ -13,6 +13,13 @@ namespace Product.Controllers
         {
             db = _db;
         }
+
+        [Route("Productts")]
+        [Route("Products")]
+        [Route("Categories/Productts")]
+        [Route("")]
+        [Route("Productts/categoriesFilterSelected/{id?}")]
+        [Route("Productts/searchData/{searchStr?}")]
         public IActionResult Index(int? id, string? searchStr)
         {
             if (id != null && id != -1 && searchStr == null)
@@ -134,5 +141,7 @@ namespace Product.Controllers
         {
             return RedirectToAction(nameof(Index), new { searchStr = searchStr });
         }
+
+   
     }
 }
